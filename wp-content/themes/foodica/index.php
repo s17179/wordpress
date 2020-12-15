@@ -25,7 +25,7 @@ $content_classes .= 'full-width' === $front_page_layout ? " full-layout" : '';
 
     <section class="<?php echo esc_attr( $content_classes ); ?>">
 
-            <h2 class="section-title"><?php esc_html_e('Latest Posts', 'foodica'); ?></h2>
+            <h2 class="section-title"><?php esc_html_e('Najnowsze przepisy', 'foodica'); ?></h2>
 
             <?php if ( have_posts() ) : ?>
 

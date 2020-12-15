@@ -11,7 +11,7 @@ if ( post_password_required() )
 
     <?php if ( have_comments() ) : ?>
 
-        <h3><?php comments_number( __( 'Leave a comment', 'foodica' ) ); ?></h3>
+        <h3><?php comments_number( __( 'Zostaw komentarz', 'foodica' ) ); ?></h3>
 
         <ol class="commentlist">
             <?php wp_list_comments( 'avatar_size=80' ); ?>

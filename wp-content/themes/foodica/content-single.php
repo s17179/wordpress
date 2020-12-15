@@ -20,9 +20,9 @@
     <header class="entry-header">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
         <div class="entry-meta">
-            <?php printf( '<span class="entry-author">%s ', __( 'Written by', 'foodica' ) ); the_author_posts_link(); print('</span>'); ?>
-            <span class="entry-date"><?php _e( 'on', 'foodica' ); ?> <?php printf( '<time class="entry-date" datetime="%1$s">%2$s</time> ', esc_attr( get_the_date( 'c' ) ), esc_html( get_the_date() ) ); ?></span>
-            <span class="entry-category"><?php _e( 'in', 'foodica' ); ?> <?php the_category( ', ' ); ?></span>
+            <?php printf( '<span class="entry-author">%s ', __( 'Dodany przez', 'foodica' ) ); the_author_posts_link(); print('</span>'); ?>
+            <span class="entry-date"><?php _e( 'dnia', 'foodica' ); ?> <?php printf( '<time class="entry-date" datetime="%1$s">%2$s</time> ', esc_attr( get_the_date( 'c' ) ), esc_html( get_the_date() ) ); ?></span>
+            <span class="entry-category"><?php _e( 'w', 'foodica' ); ?> <?php the_category( ', ' ); ?></span>
             <?php edit_post_link( __( 'Edit', 'foodica' ), '<span class="edit-link">', '</span>' ); ?>
         </div>
     </header><!-- .entry-header -->
@@ -44,23 +44,11 @@
         ) );
     ?>
 
-    <?php the_tags( '<div class="tag_list">' . __( '<h4>Tags</h4>', 'foodica' ). ' ', ' ',  '</div>'  ); ?>
+    <?php the_tags( '<div class="tag_list">' . __( '<h4>Tagi</h4>', 'foodica' ). ' ', ' ',  '</div>'  ); ?>
 
     <div class="share">
-        <a href="javascript:window.print()" title="<?php esc_attr_e( 'Print this Page', 'foodica' ); ?>" class="print"><?php _e( 'Print', 'foodica' ) ?></a>
         <div class="clear"></div>
     </div>
-
-    <div class="post_author clearfix">
-        <?php echo get_avatar( get_the_author_meta( 'ID' ) , 90 ); ?>
-        <div class="author-description">
-            <h3 class="author-title author"><?php the_author_posts_link(); ?></h3>
-            <p class="author-bio">
-                <?php the_author_meta( 'description' ); ?>
-            </p>
-        </div>
-    </div>
-
 
     <div class="prevnext">
         <?php
