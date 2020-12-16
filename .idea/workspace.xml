@@ -3,9 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="cd8fefdf-1983-4055-abeb-dee05f124a10" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/ultimate-member/includes/core/class-fields.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/ultimate-member/includes/core/class-fields.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/twentytwentyone/searchform.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentytwentyone/searchform.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/twentytwentyone/template-parts/content/content-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/twentytwentyone/template-parts/content/content-page.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/foodica/comments.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/foodica/comments.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/foodica/content-single.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/foodica/content-single.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/foodica/content.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/foodica/content.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/foodica/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/foodica/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/foodica/page.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/foodica/page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/foodica/searchform.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/foodica/searchform.php" afterDir="false" />
+>>>>>>> ee855e391bf65947b38d4d101772f736b1e3f630
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +33,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+<<<<<<< HEAD
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+=======
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="HTML" />
+>>>>>>> ee855e391bf65947b38d4d101772f736b1e3f630
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -46,6 +63,12 @@
       <updated>1607893564501</updated>
       <workItem from="1607893565569" duration="20000" />
       <workItem from="1607933178191" duration="609000" />
+<<<<<<< HEAD
+=======
+      <workItem from="1608021163532" duration="618000" />
+      <workItem from="1608055579945" duration="127000" />
+      <workItem from="1608056398774" duration="6365000" />
+>>>>>>> ee855e391bf65947b38d4d101772f736b1e3f630
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1607962905616</created>
@@ -54,14 +77,47 @@
       <option name="project" value="LOCAL" />
       <updated>1607962905617</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="2" />
+=======
+    <task id="LOCAL-00002" summary="init">
+      <created>1607980366165</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607980366165</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <created>1608056652723</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1608056652723</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add theme foodica">
+      <created>1608061922930</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608061922930</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+>>>>>>> ee855e391bf65947b38d4d101772f736b1e3f630
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <MESSAGE value="init" />
     <option name="LAST_COMMIT_MESSAGE" value="init" />
+=======
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="init" />
+    <MESSAGE value="add theme foodica" />
+    <option name="LAST_COMMIT_MESSAGE" value="add theme foodica" />
+>>>>>>> ee855e391bf65947b38d4d101772f736b1e3f630
   </component>
 </project>
