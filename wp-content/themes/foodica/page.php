@@ -12,8 +12,8 @@ get_header(); ?>
                 <div class="slide-overlay">
                     <div class="slide-header">
                         <span class="cat-links">
-                            <a href="<?=get_category_link(4)?>" rel="category tag">
-                                Dania śniadaniowe
+                            <a href="<?=get_category_link(6)?>" rel="category tag">
+                                Desery
                             </a>
                         </span>
                         <h3>
@@ -22,8 +22,7 @@ get_header(); ?>
                             </a>
                         </h3>
                         <div class="slide_button">
-                            <a href="<?=get_permalink(64)?>"
-                                    title="Permalink to Healthy Breakfast in 5 Minutes" rel="bookmark">
+                            <a href="<?=get_permalink(64)?>">
                                 Zobacz
                             </a>
                         </div>
