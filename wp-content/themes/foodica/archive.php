@@ -5,53 +5,64 @@
 
 get_header();
 
-$archives_page_layout = get_theme_mod( 'archives-layout', 'full-width' );
+$front_page_layout = get_theme_mod( 'front-page-layout', 'right-sidebar' );
 
 $content_classes = "content-area";
-$content_classes .= 'full-width' === $archives_page_layout ? " full-layout" : '';
+$content_classes .= 'full-width' === $front_page_layout ? " full-layout" : '';
 ?>
 
-<main id="main" class="site-main" role="main">
+<?php if ( is_front_page() && $paged < 2) : ?>
 
-    <?php if ( 'left-sidebar' === $archives_page_layout ): ?>
-        <?php get_sidebar(); ?>
-    <?php endif ?>
+	<?php get_template_part( 'wpzoom-slider' ); ?>
 
-    <section class="<?php echo esc_attr( $content_classes ); ?>">
+<?php endif; ?>
 
-        <?php the_archive_title( '<h2 class="section-title">', '</h2>' ); ?>
+    <main id="main" class="site-main" role="main">
 
-        <?php if (is_category() ) { ?><div class="category_description"><?php echo category_description(); ?></div><?php } ?>
+		<?php if ( 'left-sidebar' === $front_page_layout ): ?>
+			<?php get_sidebar(); ?>
+		<?php endif ?>
 
-        <?php if ( have_posts() ) : ?>
+        <section class="<?php echo esc_attr( $content_classes ); ?>">
 
-            <section id="recent-posts" class="recent-posts">
+            <h2 class="section-title"><?php esc_html_e('Najnowsze przepisy', 'foodica'); ?></h2>
 
-                <?php while ( have_posts() ) : the_post();  ?>
+			<?php if ( have_posts() ) : ?>
 
-                    <?php get_template_part( 'content', get_post_format() ); ?>
+                <section id="recent-posts" class="recent-posts">
 
-                <?php endwhile; ?>
+					<?php  while ( have_posts() ) : the_post();  ?>
 
-            </section>
+						<?php if ( is_sticky() && $paged < 2 ) {
 
-            <?php get_template_part( 'pagination' ); ?>
+							get_template_part( 'content', 'sticky' );
 
-        <?php else: ?>
+						} else {
 
-            <?php get_template_part( 'content', 'none' ); ?>
+							get_template_part( 'content', get_post_format() );
+						} ?>
 
-        <?php endif; ?>
+					<?php endwhile; ?>
 
-        <div class="clear"></div>
+                </section>
 
-    </section><!-- .content-area -->
+				<?php get_template_part( 'pagination' ); ?>
 
-    <?php if ( 'right-sidebar' === $archives_page_layout ): ?>
-        <?php get_sidebar(); ?>
-    <?php endif ?>
+			<?php else: ?>
 
-</main><!-- .site-main -->
+				<?php get_template_part( 'content', 'none' ); ?>
+
+			<?php endif; ?>
+
+            <div class="clear"></div>
+
+        </section><!-- .content-area -->
+
+		<?php if ( 'right-sidebar' === $front_page_layout ): ?>
+			<?php get_sidebar(); ?>
+		<?php endif ?>
+
+    </main><!-- .site-main -->
 
 <?php
 get_footer();

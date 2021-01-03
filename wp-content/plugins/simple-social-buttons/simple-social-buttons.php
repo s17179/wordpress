@@ -3,7 +3,7 @@
  * Plugin Name: Simple Social Buttons
  * Plugin URI: https://simplesocialbuttons.com/
  * Description: Simple Social Buttons adds an advanced set of social media sharing buttons to your WordPress sites, such as: Facebook, Twitter, WhatsApp, Viber, Reddit, LinkedIn and Pinterest. This makes it the most <code>Flexible Social Sharing Plugin ever for Everyone.</code>
- * Version: 3.2.0
+ * Version: 3.2.1
  * Author: WPBrigade
  * Author URI: https://www.WPBrigade.com/
  * Text Domain: simple-social-buttons
@@ -44,7 +44,7 @@ class SimpleSocialButtonsPR {
 	 * @isnce
 	 * @var string
 	 */
-	public $pluginVersion = '3.2.0';
+	public $pluginVersion = '3.2.1';
 
 	/**
 	 * Plugin Prefix
@@ -308,7 +308,7 @@ class SimpleSocialButtonsPR {
 
 		$_share_links = array();
 		foreach ( $order as $social_name => $priority ) {
-			if ( ! is_network_has_counts( $social_name ) ) {
+			if ( ! ssb_is_network_has_counts( $social_name ) ) {
 				continue; }
 				$_share_links[ $social_name ] = call_user_func( 'ssb_' . $social_name . '_generate_link', get_permalink( $post_id ) );
 		}
@@ -387,7 +387,6 @@ class SimpleSocialButtonsPR {
 				};
 					jQuery.post(ssb_admin_ajax, data, function(data, textStatus, xhr) {
 						var array = JSON.parse(data);
-						// console.log( array );
 						jQuery.each( array, function( index, value ){
 
 							if( index == 'total' ){
@@ -421,8 +420,8 @@ class SimpleSocialButtonsPR {
 			
 		}
 
-		$activity = $_POST['share_counts'];
-		$post_id  = $_POST['post_id'];
+		$activity = (int) $_POST['share_counts'];
+		$post_id  = (int) $_POST['post_id'];
 
 		$previous_activity = get_post_meta( $post_id, 'ssb_fbshare_counts', true );
 
@@ -452,7 +451,7 @@ class SimpleSocialButtonsPR {
 		if ( ( $this->is_ssb_on( 'sidebar' ) || $this->is_ssb_on( 'inline' ) ) || ! empty( $_GET['ssb_cache'] ) ) {
 
 			// Fetch a few variables.
-			$info['postID']        = get_the_ID();
+			$info['postID']        = (int) get_the_ID();
 			$info['footer_output'] = '';
 
 			// Pass the array through our custom filters.
@@ -816,7 +815,7 @@ class SimpleSocialButtonsPR {
 		// get post permalink and title
 		$permalink = get_permalink();
 		$title     = urlencode( html_entity_decode( get_the_title(), ENT_COMPAT, 'UTF-8' ) );
-		$post_id   = get_the_id();
+		$post_id   = (int) get_the_id();
 		$theme     = isset( $extra_data['theme'] ) ? $extra_data['theme'] : $this->selected_theme;
 
 		// Sorting the buttons
@@ -862,7 +861,7 @@ class SimpleSocialButtonsPR {
 
 			$_share_links = array();
 			foreach ( $arrButtons as $social_name => $priority ) {
-				if ( ! is_network_has_counts( $social_name ) ) {
+				if ( ! ssb_is_network_has_counts( $social_name ) ) {
 					continue; }
 					$_share_links[ $social_name ] = call_user_func( 'ssb_' . $social_name . '_generate_link', $permalink );
 			}
@@ -1078,7 +1077,7 @@ class SimpleSocialButtonsPR {
 					break;
 				case 'messenger':
 						$link                = urlencode( $permalink );
-						$messenger_share_url = is_mobile() ? "fb-messenger://share/?link=$link?app_id=$this->fb_app_id" : "http://www.facebook.com/dialog/send?app_id=$this->fb_app_id&redirect_uri=$link&link=$link&display=popup";
+						$messenger_share_url = ssb_is_mobile() ? "fb-messenger://share/?link=$link?app_id=$this->fb_app_id" : "http://www.facebook.com/dialog/send?app_id=$this->fb_app_id&redirect_uri=$link&link=$link&display=popup";
 
 					if ( $theme == 'simple-icons' ) {
 						$arrButtonsCode[] = '<button  onclick="javascript:window.open(this.dataset.href, \'_blank\',  \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\' );return false;" class="simplesocial-viber-share ssb_msng-icon" data-href=' . $messenger_share_url . '>
@@ -1124,7 +1123,7 @@ class SimpleSocialButtonsPR {
 					$tumblr_score = $share_counts['tumblr'] ? $share_counts['tumblr'] : 0;
 
 					$link             = urlencode( $permalink );
-					$tumblr_share_url = "http://tumblr.com/widgets/share/tool?canonicalUrl=$link";
+					$tumblr_share_url = esc_url( "http://tumblr.com/widgets/share/tool?canonicalUrl=$link" );
 					if ( $theme == 'simple-icons' ) {
 						$_html = '<button class="ssb_tumblr-icon" data-href="' . $tumblr_share_url . '" onclick="javascript:window.open(this.dataset.href, \'\', \'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600\');return false;">
 						<span class="icon"> <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -1618,7 +1617,7 @@ class SimpleSocialButtonsPR {
 	 * @return string Meta tag og:image for meta
 	 */
 	public function generate_og_image() {
-		$_post_id = get_the_ID();
+		$_post_id = (int) get_the_ID();
 
 		if ( has_post_thumbnail( $_post_id ) ) {
 			return '<meta property="og:image" content="' . wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ) . '" />' . PHP_EOL;
@@ -1650,7 +1649,7 @@ class SimpleSocialButtonsPR {
 	 * @return mixed
 	 */
 	public function generate_twitter_image() {
-		$_post_id = get_the_ID();
+		$_post_id = (int) get_the_ID();
 
 		if ( has_post_thumbnail( $_post_id ) ) {
 			return '<meta property="twitter:image" content="' . wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ) . '" />' . PHP_EOL;
@@ -1721,7 +1720,7 @@ class SimpleSocialButtonsPR {
 	public function http_or_https_link_generate( $permalink ) {
 
 		foreach ( $this->arrKnownButtons as $social_name ) {
-			if ( ! is_network_has_counts( $social_name ) ) {
+			if ( ! ssb_is_network_has_counts( $social_name ) ) {
 				continue; }
 			$url = $this->http_or_https_resolve_url( $permalink );
 			// get alt hurl to cover http or https issue

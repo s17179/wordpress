@@ -582,7 +582,7 @@ class Ssb_Settings {
 			wp_die( 'error' );
 		}
 
-		$ssb_imp_tmp_name = $_FILES['file']['tmp_name'];
+		$ssb_imp_tmp_name = sanitize_text_field( $_FILES['file']['tmp_name'] );
 		$ssb_file_content = file_get_contents( $ssb_imp_tmp_name );
 		$ssb_json         = json_decode( $ssb_file_content, true );
 

@@ -1,0 +1,107 @@
+#recipe-ingredients-ingredients {
+    margin-top: 30px;
+    background: rgba(0,0,0,0.03);
+}
+
+#recipe-ingredients-ingredients .recipe-ingredients-ingredients-header {
+    padding: 30px;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    display: flex;
+    flex: 1;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+#recipe-ingredients-ingredients h4 {
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 0;
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+}
+
+#recipe-ingredients-ingredients-servings {
+    display: table;
+    text-align: center;
+    background: rgba(0,0,0,0.04);
+    padding: 10px 30px;
+    margin: 0 auto 40px auto;
+}
+
+#recipe-ingredients-ingredients-servings input {
+    width: 60px;
+    padding: 0;
+    text-align: center;
+    height: 30px;
+    margin-left: 15px;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 0;
+}
+
+#recipe-ingredients-ingredients-list {
+    padding: 0 30px 30px 30px;
+}
+
+#recipe-ingredients-ingredients-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#recipe-ingredients-ingredients-list ul li {
+    font-weight: 400;
+    font-size: 16px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+#recipe-ingredients-ingredients-list ul li:first-child,
+#recipe-ingredients-ingredients-list ul span + li {
+    border-top: 0;
+}
+
+#recipe-ingredients-ingredients-list input[type="checkbox"] {
+    display: none;
+}
+
+#recipe-ingredients-ingredients-list input[type="checkbox"] + label {
+    display: inline-block;
+    position: relative;
+    margin-left: 40px;
+    margin-bottom: 0;
+    border-left: 1px solid rgba(0,0,0,0.1);
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#recipe-ingredients-ingredients-list input[type="checkbox"]:checked + label {
+    color: rgba(0,0,0,0.5);
+}
+
+#recipe-ingredients-ingredients-list input[type="checkbox"] + label::before {
+    content: "";
+    background-color: #fff;
+    background-image: url('data:image/svg+xml; utf-8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23fff" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg>');
+    background-repeat: no-repeat;
+    background-size: 0;
+    background-position: center;
+    border: 1px solid rgba(0,0,0,0.1);
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: 15px;
+    left: -40px;
+    border-radius: 3px;
+    -webkit-transition: all ease 0.35s;
+    -moz-transition: all ease 0.35s;
+    transition: all ease 0.35s;
+    cursor: pointer;
+}
+
+#recipe-ingredients-ingredients-list input[type="checkbox"]:checked + label::before {
+    background-color: #1A84EE;
+    background-size: 12px;
+    border-color: #1A84EE;
+}

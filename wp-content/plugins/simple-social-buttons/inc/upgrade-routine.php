@@ -32,8 +32,8 @@ function ssb_upgrade_routine_2() {
 		$_old_value = get_option( 'ssb_pr_settings' );
 
 		// Set Position of Inline Icons.
-		$before_post = isset( $_old_value['beforepost'] ) && $_old_value['beforepost'] == '1' ? true : false;
-		$after_post  = isset( $_old_value['afterpost'] ) && $_old_value['afterpost'] == '1' ? true : false;
+		$before_post = rest_sanitize_boolean( isset( $_old_value['beforepost'] ) && $_old_value['beforepost'] == '1' ? true : false );
+		$after_post  = rest_sanitize_boolean( isset( $_old_value['afterpost'] ) && $_old_value['afterpost'] == '1' ? true : false );
 
 		if ( $before_post && $after_post ) {
 			$inline_location = 'above_below';
@@ -44,8 +44,8 @@ function ssb_upgrade_routine_2() {
 		}
 
 		// Page.
-		$before_page = isset( $_old_value['beforepage'] ) && $_old_value['beforepage'] == '1' ? true : false;
-		$after_page  = isset( $_old_value['afterpage'] ) && $_old_value['afterpage'] == '1' ? true : false;
+		$before_page = rest_sanitize_boolean( isset( $_old_value['beforepage'] ) && $_old_value['beforepage'] == '1' ? true : false );
+		$after_page  = rest_sanitize_boolean( isset( $_old_value['afterpage'] ) && $_old_value['afterpage'] == '1' ? true : false );
 
 		$inline_posts = array(
 			'post' => 'post',
@@ -60,9 +60,9 @@ function ssb_upgrade_routine_2() {
 			'posts'    => $inline_posts,
 		);
 
-		$on_archive  = isset( $_old_value['showarchive'] ) && $_old_value['showarchive'] == '1' ? true : false;
-		$on_tag      = isset( $_old_value['showtag'] ) && $_old_value['showtag'] == '1' ? true : false;
-		$on_category = isset( $_old_value['showcategory'] ) && $_old_value['showcategory'] == '1' ? true : false;
+		$on_archive  = rest_sanitize_boolean( isset( $_old_value['showarchive'] ) && $_old_value['showarchive'] == '1' ? true : false );
+		$on_tag      = rest_sanitize_boolean( isset( $_old_value['showtag'] ) && $_old_value['showtag'] == '1' ? true : false );
+		$on_category = rest_sanitize_boolean( isset( $_old_value['showcategory'] ) && $_old_value['showcategory'] == '1' ? true : false );
 
 		if ( $on_archive ) {
 			$_default_inline['show_on_archive'] = 1;

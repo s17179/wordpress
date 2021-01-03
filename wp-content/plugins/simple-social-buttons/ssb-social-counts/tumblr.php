@@ -12,12 +12,14 @@ function ssb_format_tumblr_response( $response ) {
 	$counts   = 0;
 	$response = json_decode( $response, true );
 	// Check is valid api response
-	if ( isset( $response['meta']['status'] ) && $response['response']['note_count']  > 0 ) {
-		if ( $response['meta']['status'] == 200 ) {
-			$counts = $response['response']['note_count'];
+	if ( isset( $response['meta']['status'] ) && isset( $response['response']['note_count'] ) ) {
+		if( $response['response']['note_count'] > 0 ) {
+			if ( $response['meta']['status'] == 200 ) {
+				$counts = $response['response']['note_count'];
+			}
 		}
+		return $counts;
 	}
-	return $counts;
 }
 
 /**

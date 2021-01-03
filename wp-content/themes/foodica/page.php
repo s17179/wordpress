@@ -17,12 +17,12 @@ get_header(); ?>
                             </a>
                         </span>
                         <h3>
-                            <a href="<?=get_permalink(64)?>">
-                                <?=get_the_title(64)?>
+                            <a href="<?=get_permalink(213)?>">
+                                <?=get_the_title(213)?>
                             </a>
                         </h3>
                         <div class="slide_button">
-                            <a href="<?=get_permalink(64)?>">
+                            <a href="<?=get_permalink(213)?>">
                                 Zobacz
                             </a>
                         </div>

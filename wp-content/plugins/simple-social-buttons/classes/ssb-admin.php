@@ -71,7 +71,7 @@ if ( ! class_exists( 'SimpleSocialButtonsPR_Admin' ) ) :
 			wp_enqueue_style( 'ssb-blocks-editor-css', plugins_url( 'assets/css/blocks.editor.css', plugin_dir_path( __FILE__ ) ), array(), SSB_VERSION );
 			wp_enqueue_style( 'ssb-front-css', plugins_url( 'assets/css/front.css', plugin_dir_path( __FILE__ ) ), false, SSB_VERSION );
 
-			$is_pro =  class_exists( 'Simple_Social_Buttons_Pro') ? true : false;
+			$is_pro = class_exists( 'Simple_Social_Buttons_Pro') ? rest_sanitize_boolean( true ) : rest_sanitize_boolean( false );
 			wp_localize_script( 'ssb-blocks-editor-js', 'SSB', array( 'plugin_url' => SSB_PLUGIN_URL, 'is_pro' => $is_pro ) );
 
 		}
@@ -84,7 +84,7 @@ if ( ! class_exists( 'SimpleSocialButtonsPR_Admin' ) ) :
 		 * @return void
 		 */
 		public function ssb_meta_box() {
-			$postId             = isset( $_GET['post'] ) ? $_GET['post'] : false;
+			$postId             = isset( $_GET['post'] ) ? sanitize_post( $_GET['post'] ) : rest_sanitize_boolean( false );
 			$postType           = get_post_type( $postId );
 			$ssb_positions      = get_option( 'ssb_positions' );
 			$selected_post_type = array();
@@ -183,9 +183,10 @@ if ( ! class_exists( 'SimpleSocialButtonsPR_Admin' ) ) :
 			}
 
 			// Saving data
-			$newValue = ( isset( $_POST[ $this->hideCustomMetaKey ] ) ) ? $_POST[ $this->hideCustomMetaKey ] : 'false';
+			$newValue = ( isset( $_POST[ $this->hideCustomMetaKey ] ) ) ?  sanitize_text_field( $_POST[ $this->hideCustomMetaKey ] ) :  'false';
 
 			update_post_meta( $postId, $this->hideCustomMetaKey, $newValue );
+			
 		}
 
 

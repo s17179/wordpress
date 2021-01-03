@@ -100,7 +100,7 @@
 <p>
   <label for="<?php echo esc_attr( $this->get_field_id( 'youtube_type' ) ); ?>  "><?php esc_attr_e( 'Type :', 'simple-social-buttons' ); ?></label>
   <select class="widefat" name="<?php echo esc_attr( $this->get_field_name( 'youtube_type' ) ); ?>">
-    <option <?php selected( $youtube_type, 'channel'); ?> value="channel">Channel</option>
+    <option <?php selected( $youtube_type, 'channel'); ?> value="c">Channel</option>
     <option <?php selected( $youtube_type, 'user'); ?> value="user">Username</option>
   </select>
 </p>
@@ -114,7 +114,7 @@
 
 <div class="youtube_api_key" style="display: <?php echo  ( $display == $youtube_show_counter )? 'block' : 'none' ?>">
 <p>
-    <label for="<?php echo esc_attr( $this->get_field_id( 'youtube_api_key' ) ); ?>"><?php esc_attr_e( 'YouTube Api Key: ', 'simple-social-buttons' ); ?><a href="#" target="_blank">How to get the YouTube API Key</a>
+    <label for="<?php echo esc_attr( $this->get_field_id( 'youtube_api_key' ) ); ?>"><?php esc_attr_e( 'YouTube Api Key: ', 'simple-social-buttons' ); ?><a href="https://developers.google.com/youtube/registering_an_application" target="_blank">How to get the YouTube API Key</a>
     </label>
     <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'youtube_api_key' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'youtube_api_key' ) ); ?>" type="text" value="<?php echo esc_attr( $youtube_api_key ); ?>">
 </p>

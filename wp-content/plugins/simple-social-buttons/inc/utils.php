@@ -153,7 +153,7 @@ function ssb_fetch_fresh_counts( $stats, $post_id, $alt_share_link ) {
 	}
 
 	foreach ( $stats as $social_name => $counts ) {
-		if ( ! is_network_has_counts( $social_name ) ) {
+		if ( ! ssb_is_network_has_counts( $social_name ) ) {
 			continue; }
 		$stats_counts = call_user_func( 'ssb_format_' . $social_name . '_response', $counts );
 		$new_counts   = $stats_counts + $networks[ $social_name ];
@@ -206,7 +206,7 @@ function ssb_fetch_http_or_https_counts( $stats, $post_id ) {
 	$stats_result = array();
 	$networks     = array();
 	foreach ( $stats as $social_name => $counts ) {
-		if ( ! is_network_has_counts( $social_name ) ) {
+		if ( ! ssb_is_network_has_counts( $social_name ) ) {
 			continue; }
 		$stats_counts              = call_user_func( 'ssb_format_' . $social_name . '_response', $counts );
 		 $networks[ $social_name ] = $stats_counts;
@@ -248,7 +248,7 @@ function ssb_fetch_cached_counts( $network_name, $post_id ) {
 	 *
 	 * @since 2.0.13
 	 */
-function is_mobile() {
+function ssb_is_mobile() {
 
 	$useragent = isset( $_SERVER['HTTP_USER_AGENT'] ) ? $_SERVER['HTTP_USER_AGENT'] : 'none';
 
@@ -303,13 +303,13 @@ function ssb_linkdin_share_link( $url ) {
 }
 
 	/**
-	 * Check is network has count.
+	 * Check if SSB network has count/s.
 	 *
 	 * @since 2.1.4
 	 * @param string $network network name.
 	 * @return boolean
 	 */
-function is_network_has_counts( $network ) {
+function ssb_is_network_has_counts( $network ) {
 	$no_count_networks = array( 'totalshare', 'viber', 'fblike', 'whatsapp', 'print', 'email', 'messenger', 'linkedin' );
 	if ( in_array( $network, $no_count_networks ) ) {
 		return false;

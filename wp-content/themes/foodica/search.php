@@ -2,7 +2,7 @@
 
 <main id="main" class="site-main" role="main">
 
-   <h2 class="section-title"><?php esc_html_e('Search Results for','foodica');?> <strong>"<?php the_search_query(); ?>"</strong></h2>
+   <h2 class="section-title"><?php esc_html_e('Rezultat wyszukiwania dla frazy','foodica');?> <strong>"<?php the_search_query(); ?>"</strong></h2>
 
     <section class="content-area full-layout">
 

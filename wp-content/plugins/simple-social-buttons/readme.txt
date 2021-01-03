@@ -4,7 +4,7 @@ Donate link: https://simplesocialbuttons.com/
 Tags: Social share, Social buttons, Whatsapp, Viber, LinkedIn, facebook, twitter, pinterest, plus one
 Requires at least: 4.0
 Tested up to: 5.6
-Stable tag: 3.2.0
+Stable tag: 3.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -146,6 +146,9 @@ like_button_size = small(default), large
 9. Social Share buttons on flyins.
 
 == Changelog ==
+
+= 3.2.1 - 2020-12-18 =
+* Bug fix: Security vulnerabilities fixed, Upgrade immediately.
 
 = 3.2.0 - 2020-12-15 =
 * Bug fix: Security vulnerability fixed, Upgrade immediately.
@@ -444,5 +447,5 @@ like_button_size = small(default), large
 
 == Upgrade Notice ==
 
-= 3.2.0 =
+= 3.2.1 =
 * Please upgrade immediately.
