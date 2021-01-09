@@ -20,14 +20,28 @@ class FavouriteRecipes {
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
 	}
 
-	function add_to_favourites(){
+	function add_to_favourites($params){
 		global $wpdb;
+		$userId = $params['userId'];
+		$recipeId = $params['recipeId'];
+		$tableName = 'wp_favourite_user_recipes';
 
+		$wpdb->insert($tableName, array(
+			'recipes_id' => $recipeId,
+			'user_id' => $userId
+		));
 	}
 
 	function remove_from_favourites($params){
-		print_r($params['userId']);
-		print_r($params['recipeId']);
+		global $wpdb;
+		$userId = $params['userId'];
+		$recipeId = $params['recipeId'];
+		$tableName = 'wp_favourite_user_recipes';
+
+		$wpdb->delete($tableName, array(
+			'recipes_id' => $recipeId,
+			'user_id' => $userId
+		));
 	}
 
 	function enqueue_assets() {
