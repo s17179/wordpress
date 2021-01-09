@@ -3371,3 +3371,7 @@ body.ei-index #easyindex-index li.ei-item {
 .woocommerce table.shop_table td {
     padding: 20px 15px;
 }
+
+.favourite_recipes_btn {
+    align-content: center;
+}

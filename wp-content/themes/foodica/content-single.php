@@ -36,6 +36,22 @@ if ( $post_layout == 'column-full' ) {
     </div><!-- .entry-content -->
 
     <?php
+    global $wpdb;
+    $tableName   = $wpdb->prefix . 'favourite_user_recipes';
+    $recipeId = get_the_ID();
+    $userId = get_current_user_id();
+
+    $favourited = $wpdb->get_results("Select * FROM $tableName WHERE recipes_id = $recipeId AND user_id = $userId");
+    if(empty($favourited)){
+    ?>
+    <button id="favourite_recipes_btn"> Add to favourites!</button><?php
+    }
+    else{
+    ?>
+        <button id="favourite_recipes_btn"> Favourited :)</button><?php
+    }?>
+
+    <?php
     $postId = get_the_ID();
 
     global $wpdb;
@@ -75,6 +91,15 @@ if ( $post_layout == 'column-full' ) {
         </div>
     <?php } ?>
 
+
+    <?php if(!get_the_ID()) {
+	    echo '';
+	    echo 'The ID of this post is:';
+	    echo get_the_ID();
+	    echo 'And the ID of the user is:';
+	    echo get_current_user_id();
+    }
+    ?>
 </article><!-- #post-## -->
 
 <footer class="entry-footer">
