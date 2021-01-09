@@ -45,9 +45,19 @@ if ( $post_layout == 'column-full' ) {
 
     $favourited = $wpdb->get_results("Select * FROM $tableName WHERE recipes_id = $recipeId AND user_id = $userId");
     ?>
-    <div style="text-align:center">
-        <button id="favourite_recipes_btn_add" <?php if($favourited === null) { echo 'style="display:none"';}?>> Add to favourites!</button>
-        <button id="favourite_recipes_btn_del" <?php if($favourited !== null) { echo 'style="display:none"';}?>> Favourited :)</button>
+    <div
+            id="favourite_recipes_data"
+            style="text-align:center"
+            data-home-url="<?= home_url() ?>"
+            data-user-id="<?= $userId ?>"
+            data-recipe-id="<?= $recipeId ?>"
+    >
+        <button id="favourite_recipes_btn_add" <?php if($favourited === null) { echo 'style="display:none"';}?>>
+            Dodaj do ulubionych
+        </button>
+        <button id="favourite_recipes_btn_del" <?php if($favourited !== null) { echo 'style="display:none"';}?>>
+            Usuń z ulubionych
+        </button>
     </div>
 
     <?php

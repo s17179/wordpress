@@ -16,6 +16,8 @@ class FavouriteRecipes {
 				'callback' => [$this, 'remove_from_favourites']
 			]);
 		});
+
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
 	}
 
 	function add_to_favourites(){
@@ -26,5 +28,13 @@ class FavouriteRecipes {
 	function remove_from_favourites($params){
 		print_r($params['userId']);
 		print_r($params['recipeId']);
+	}
+
+	function enqueue_assets() {
+		wp_enqueue_script(
+			'recipe-ingredients-functions',
+			plugins_url( '/assets/js/favourite-recipes-functions.js', __DIR__ ),
+			[ 'jquery' ]
+		);
 	}
 }
