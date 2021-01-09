@@ -46,7 +46,7 @@ class FavouriteRecipes {
 
 	function enqueue_assets() {
 		wp_enqueue_script(
-			'recipe-ingredients-functions',
+			'favourite-recipes-functions',
 			plugins_url( '/assets/js/favourite-recipes-functions.js', __DIR__ ),
 			[ 'jquery' ]
 		);
