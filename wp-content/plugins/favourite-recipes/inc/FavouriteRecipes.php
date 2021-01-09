@@ -6,24 +6,25 @@ class FavouriteRecipes {
 
 	public function __construct() {
 		add_action('rest_api_init', function(){
-			register_rest_route('favourites/v1', 'add', [
+			register_rest_route('favourites/v1', 'add/(?P<userId>[0-9]+)/(?P<recipeId>[0-9]+)', [
 				'methods' => 'POST',
-				'callback' => 'add_to_favourites'
+				'callback' => [$this, 'add_to_favourites']
 			]);
 
-			register_rest_route('favourites/v1', 'remove/(?P<>)',[
+			register_rest_route('favourites/v1', 'remove/(?P<userId>[0-9]+)/(?P<recipeId>[0-9]+)',[
 				'methods' => 'POST',
-				'callback' => 'remove_from_favourites'
+				'callback' => [$this, 'remove_from_favourites']
 			]);
 		});
 	}
 
 	function add_to_favourites(){
 		global $wpdb;
-		//db script to
+
 	}
 
-	function remove_from_favourites(){
-		
+	function remove_from_favourites($params){
+		print_r($params['userId']);
+		print_r($params['recipeId']);
 	}
 }

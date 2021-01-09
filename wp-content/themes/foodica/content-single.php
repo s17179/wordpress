@@ -35,6 +35,8 @@ if ( $post_layout == 'column-full' ) {
 
     </div><!-- .entry-content -->
 
+
+
     <?php
     global $wpdb;
     $tableName   = $wpdb->prefix . 'favourite_user_recipes';
@@ -42,19 +44,14 @@ if ( $post_layout == 'column-full' ) {
     $userId = get_current_user_id();
 
     $favourited = $wpdb->get_results("Select * FROM $tableName WHERE recipes_id = $recipeId AND user_id = $userId");
-    if(empty($favourited)){
     ?>
-    <button id="favourite_recipes_btn"> Add to favourites!</button><?php
-    }
-    else{
-    ?>
-        <button id="favourite_recipes_btn"> Favourited :)</button><?php
-    }?>
+    <div style="text-align:center">
+        <button id="favourite_recipes_btn_add" <?php if($favourited === null) { echo 'style="display:none"';}?>> Add to favourites!</button>
+        <button id="favourite_recipes_btn_del" <?php if($favourited !== null) { echo 'style="display:none"';}?>> Favourited :)</button>
+    </div>
 
     <?php
     $postId = get_the_ID();
-
-    global $wpdb;
 
     $tableName = $wpdb->prefix . 'recipe_ingredients_items';
 

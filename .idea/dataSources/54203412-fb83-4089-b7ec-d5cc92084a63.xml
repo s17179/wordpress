@@ -1250,8 +1250,8 @@ comment_date_gmt</ColNames>
     </key>
     <foreign-key id="377" parent="329" name="wp_favourite_user_recipes_ibfk_1">
       <ColNames>recipes_id</ColNames>
-      <RefTableName>wp_recipe_ingredients_items</RefTableName>
-      <RefColNames>id</RefColNames>
+      <RefTableName>wp_posts</RefTableName>
+      <RefColNames>ID</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="378" parent="329" name="wp_favourite_user_recipes_ibfk_2">
