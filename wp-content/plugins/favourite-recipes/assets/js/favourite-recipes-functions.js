@@ -6,7 +6,6 @@ jQuery(document).ready(function($) {
 
     $(document).on('click', '#favourite_recipes_btn_add', function(e) {
         $.post(homeUrl + "/wp-json/favourites/v1/add/" + userId + "/" + recipeId, function(data) {
-            console.log(data);
         });
 
         $(this).css('display', 'none');
@@ -15,7 +14,6 @@ jQuery(document).ready(function($) {
 
     $(document).on('click', '#favourite_recipes_btn_del', function(e) {
         $.post(homeUrl + "/wp-json/favourites/v1/remove/" + userId + "/" + recipeId, function(data) {
-            console.log(data);
         });
 
         $(this).css('display', 'none');
