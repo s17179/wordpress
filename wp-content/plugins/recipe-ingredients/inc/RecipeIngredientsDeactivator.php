@@ -9,16 +9,6 @@ class RecipeIngredientsDeactivator {
 	}
 
 	private function dropDatabaseTableForIngredients(): void {
-		global $wpdb;
 
-		$tableName = $wpdb->prefix . 'recipe_ingredients_items';
-
-		echo 'dropping';
-
-		$sql = "
-			DROP TABLE $tableName
-		";
-
-		$wpdb->query( $sql );
 	}
 }
