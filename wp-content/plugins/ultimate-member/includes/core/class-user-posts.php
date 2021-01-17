@@ -37,15 +37,27 @@ if ( ! class_exists( 'um\core\User_posts' ) ) {
 			foreach($favouritedRecipes as $value){
 				$favRecipesArray[] = $value->recipes_id;
 			}
+			#print_r($favRecipesArray);
 
-			$args = array(
-				'post_type'         => 'any',
-				'posts_per_page'    => 10,
-				'offset'            => 0,
-				'author'            => 1,
-				'post__in'          => $favRecipesArray,
-				'post_status'       => array( 'publish' )
-			);
+			if(!empty($favRecipesArray)) {
+				$args = array(
+					'post_type'      => 'any',
+					'posts_per_page' => 10,
+					'offset'         => 0,
+					'author'         => 1,
+					'post__in'       => $favRecipesArray,
+					'post_status'    => array( 'publish' )
+				);
+			}
+			else{
+				$args = array(
+					'post_type'         => 'post',
+					'posts_per_page'    => 10,
+					'offset'            => 0,
+					'author'            => um_get_requested_user(),
+					'post_status'       => array( 'publish' )
+				);
+			}
 
 			/**
 			 * UM hook
