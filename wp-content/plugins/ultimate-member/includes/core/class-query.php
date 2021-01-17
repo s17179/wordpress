@@ -102,6 +102,7 @@ if ( ! class_exists( 'um\core\Query' ) ) {
 				OBJECT
 			);
 
+
 			$array = array();
 			if( $wpdb->num_rows > 0 ){
 				foreach ($pages as $page_data) {

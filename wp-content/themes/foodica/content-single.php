@@ -52,10 +52,10 @@ if ( $post_layout == 'column-full' ) {
             data-user-id="<?= $userId ?>"
             data-recipe-id="<?= $recipeId ?>"
     >
-        <button id="favourite_recipes_btn_add" <?php if($favourited === null) { echo 'style="display:none"';}?>>
+        <button id="favourite_recipes_btn_add" <?php if(!empty($favourited)) { echo 'style="display:none"';}?>>
             Dodaj do ulubionych
         </button>
-        <button id="favourite_recipes_btn_del" <?php if($favourited !== null) { echo 'style="display:none"';}?>>
+        <button id="favourite_recipes_btn_del" <?php if(empty($favourited)) { echo 'style="display:none"';}?>>
             Usuń z ulubionych
         </button>
     </div>

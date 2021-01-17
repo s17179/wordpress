@@ -2,6 +2,8 @@
 namespace um\core;
 
 
+use function MongoDB\BSON\toJSON;
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
@@ -28,11 +30,20 @@ if ( ! class_exists( 'um\core\User_posts' ) ) {
 		 * Add posts
 		 */
 		function add_posts() {
+			global $wpdb;
+			$currentUserId = get_current_user_id();
+			$favouritedRecipes = $wpdb->get_results("SELECT recipes_id FROM wp_posts p join wp_favourite_user_recipes f on p.id = f.recipes_id WHERE f.user_id = $currentUserId");
+
+			foreach($favouritedRecipes as $value){
+				$favRecipesArray[] = $value->recipes_id;
+			}
+
 			$args = array(
-				'post_type'         => 'post',
+				'post_type'         => 'any',
 				'posts_per_page'    => 10,
 				'offset'            => 0,
-				'author'            => um_get_requested_user(),
+				'author'            => 1,
+				'post__in'          => $favRecipesArray,
 				'post_status'       => array( 'publish' )
 			);
 

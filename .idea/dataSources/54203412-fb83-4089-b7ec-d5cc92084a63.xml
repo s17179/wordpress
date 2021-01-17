@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MariaDB - infobuzer_wordpress@mariadb105.infobuzer.nazwa.pl">
-  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.20">
+  <database-model serializer="dbm" dbms="MARIADB" family-id="MARIADB" format-version="4.19">
     <root id="1">
       <ServerVersion>10.5.8</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -1021,7 +1021,7 @@
     </collation>
     <user id="326" parent="1" name="infobuzer_wordpress">
       <Host>%</Host>
-      <ObjectGrants>ALL PRIVILEGES|infobuzer\_wordpress
+      <ObjectGrants>ALL PRIVILEGES|infobuzer\_wordpress:null
 </ObjectGrants>
     </user>
     <table id="327" parent="2" name="wp_commentmeta">
