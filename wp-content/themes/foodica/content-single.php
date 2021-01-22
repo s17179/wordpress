@@ -38,12 +38,13 @@ if ( $post_layout == 'column-full' ) {
 
 
     <?php
-    global $wpdb;
-    $tableName   = $wpdb->prefix . 'favourite_user_recipes';
-    $recipeId = get_the_ID();
-    $userId = get_current_user_id();
+    if (is_user_logged_in()) {
+        global $wpdb;
+        $tableName   = $wpdb->prefix . 'favourite_user_recipes';
+        $recipeId = get_the_ID();
+        $userId = get_current_user_id();
 
-    $favourited = $wpdb->get_results("Select * FROM $tableName WHERE recipes_id = $recipeId AND user_id = $userId");
+        $favourited = $wpdb->get_results("Select * FROM $tableName WHERE recipes_id = $recipeId AND user_id = $userId");
     ?>
     <div
             id="favourite_recipes_data"
@@ -61,6 +62,8 @@ if ( $post_layout == 'column-full' ) {
     </div>
 
     <?php
+    }
+
     $postId = get_the_ID();
 
     $tableName = $wpdb->prefix . 'recipe_ingredients_items';
