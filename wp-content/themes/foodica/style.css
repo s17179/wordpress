@@ -85,7 +85,7 @@ html {
      overflow: hidden
 }
  figure {
-     margin: 1em 40px
+     margin: 1em 40px;
      max-width: 100%;
 }
  hr {
@@ -159,9 +159,13 @@ html {
  table {
      border-collapse: collapse;
      border-spacing: 0;
+     width: 100%;
+}
+table thead{
+    text-align: left;
 }
  td, th {
-     padding: 0
+     padding: 0.5rem;
 }
  * {
      -webkit-box-sizing: border-box;

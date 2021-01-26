@@ -76,9 +76,7 @@
     padding-bottom: 10px;
 }
 
-#recipe-ingredients-ingredients-list input[type="checkbox"]:checked + label {
-    color: rgba(0,0,0,0.5);
-}
+
 
 #recipe-ingredients-ingredients-list input[type="checkbox"] + label::before {
     content: "";
