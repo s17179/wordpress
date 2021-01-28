@@ -142,8 +142,8 @@ if ( ! class_exists( 'um\core\Profile' ) ) {
 					'icon' => 'um-faicon-user'
 				),
 				'posts' => array(
-					'name' => __( 'Posts', 'ultimate-member' ),
-					'icon' => 'um-faicon-pencil'
+					'name' => __( 'Ulubione posty', 'ultimate-member' ),
+					'icon' => 'um-icon-heart'
 				),
 				'comments' => array(
 					'name' => __( 'Comments', 'ultimate-member' ),

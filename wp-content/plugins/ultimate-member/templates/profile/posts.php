@@ -20,7 +20,7 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 					<a href="javascript:void(0);" class="um-ajax-paginate um-button" data-hook="um_load_posts"
 					   data-author="<?php echo esc_attr( um_get_requested_user() ); ?>" data-page="1"
 					   data-pages="<?php echo esc_attr( ceil( $count_posts / 10 ) ); ?>">
-						<?php _e( 'load more favourites', 'ultimate-member' ); ?>
+						<?php _e( 'Załaduj więcej ulubionych', 'ultimate-member' ); ?>
 					</a>
 				</div>
 			<?php } ?>
@@ -32,9 +32,9 @@ if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
 		<div class="um-profile-note">
 			<span>
 				<?php if ( um_profile_id() == get_current_user_id() ) {
-					_e( 'You have not favourited any posts.', 'ultimate-member' );
+					_e( 'Nie masz żadnych ulubionych postów.', 'ultimate-member' );
 				} else {
-					_e( 'This user has not favourited any posts.', 'ultimate-member' );
+					_e( 'Ten użytkownik nie ma ulubionych postów.', 'ultimate-member' );
 				} ?>
 			</span>
 		</div>

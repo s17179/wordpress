@@ -49,15 +49,7 @@ if ( ! class_exists( 'um\core\User_posts' ) ) {
 					'post_status'    => array( 'publish' )
 				);
 			}
-			else{
-				$args = array(
-					'post_type'         => 'post',
-					'posts_per_page'    => 10,
-					'offset'            => 0,
-					'author'            => um_get_requested_user(),
-					'post_status'       => array( 'publish' )
-				);
-			}
+
 
 			/**
 			 * UM hook
@@ -80,15 +72,23 @@ if ( ! class_exists( 'um\core\User_posts' ) ) {
 			 * }
 			 * ?>
 			 */
-			$args = apply_filters( 'um_profile_query_make_posts', $args );
-			$posts = get_posts( $args );
 
-			$args['posts_per_page'] = -1;
-			$args['fields'] = 'ids';
-			unset( $args['offset'] );
-			$count_posts = get_posts( $args );
-			if ( ! empty( $count_posts ) && ! is_wp_error( $count_posts ) ) {
-				$count_posts = count( $count_posts );
+			if(!empty($favRecipesArray)) {
+				$args  = apply_filters( 'um_profile_query_make_posts', $args );
+				$posts = get_posts( $args );
+
+				$args['posts_per_page'] = - 1;
+				$args['fields']         = 'ids';
+				unset( $args['offset'] );
+				$count_posts = get_posts( $args );
+
+				if ( ! empty( $count_posts ) && ! is_wp_error( $count_posts ) ) {
+					$count_posts = count( $count_posts );
+				}
+			}
+			else{
+				$posts = [];
+				$count_posts = 0;
 			}
 
 			UM()->get_template( 'profile/posts.php', '', array( 'posts' => $posts, 'count_posts' => $count_posts ), true );
