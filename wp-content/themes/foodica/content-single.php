@@ -83,20 +83,29 @@ if ( $post_layout == 'column-full' ) {
             </div>
 
             <div id="recipe-ingredients-ingredients-list">
-                <ul>
-                    <?php foreach ($ingredients as $ingredient): ?>
-                        <li>
-                            <input type="checkbox">
-                            <label>
-                                <span class="ingredient-quantity" data-default-quantity="<?= $ingredient->quantity ?>">
-                                    <?= $ingredient->quantity ?>
-                                </span>
-                                <span class="ingredient-unit"><?= $ingredient->unit ?></span>
-                                <span class="ingredient-name"><?= $ingredient->name ?></span>
-                            </label>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
+                <table class="recipe-table">
+                    <thead>
+                        <tr>
+                            <th>Nazwa składnika</th>
+                            <th>Ilość </th>
+                            <th>Jednostka </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($ingredients as $ingredient): ?>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <input type="checkbox" id ="check<?= $ingredient->name ?>">
+                                        <label for="check<?= $ingredient->name ?>"><?= $ingredient->name ?></label>
+                                    </div>
+                                </td>
+                                <td class="ingredient-quantity" data-default-quantity="<?= $ingredient->quantity ?>"> <?= $ingredient->quantity ?> </td>
+                                <td> <?= $ingredient->unit ?> </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     <?php } ?>

@@ -7,11 +7,52 @@ class RecipeIngredients {
 	public function __construct() {
 		add_action( 'init', [ $this, 'registerPostType' ] );
 
+		add_action( 'admin_menu', [ $this, 'addIngredientsMenu' ] );
+
 		add_action( 'add_meta_boxes', [ $this, 'addIngredientsBox' ] );
 
 		add_action( 'save_post', [ $this, 'saveRecipe' ] );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueAssets' ] );
+
+		add_action('rest_api_init', function(){
+			register_rest_route('ingredients/v1/delete', '/(?P<ingredientId>[0-9]+)', [
+				'methods' => 'POST',
+				'callback' => [$this, 'deleteIngredient']
+			]);
+		});
+	}
+
+	public function deleteIngredient($params): void {
+		global $wpdb;
+
+		$ingredientId = (int) $params['ingredientId'];
+
+		$wpdb->delete($wpdb->prefix . 'ingredients', [
+			'id' => $ingredientId
+		]);
+	}
+
+	public function addIngredientsMenu(): void {
+		add_submenu_page(
+			'edit.php?post_type=recipe-ingredients',
+			'Składniki',
+			'Składniki',
+			'manage_options',
+			'recipe-ingredients-ingredients',
+			[ $this, 'includeIngredientsMenu' ],
+			2
+		);
+
+		wp_enqueue_script(
+			'ingredients-functions',
+			plugins_url( '/assets/js/ingredients-functions.js', __DIR__ ),
+			[ 'jquery' ]
+		);
+	}
+
+	public function includeIngredientsMenu(): void {
+		include RECIPE_INGREDIENTS_BASE_PATH . '/templates/ingredients.php';
 	}
 
 	public function registerPostType(): void {
@@ -26,7 +67,8 @@ class RecipeIngredients {
 			],
 			'taxonomies'  => [ 'category', 'post_tag' ],
 			'supports'    => [ 'title', 'editor', 'thumbnail', 'comments' ],
-			'rewrite'     => [ 'slug' => 'przepisy' ]
+			'rewrite'     => [ 'slug' => 'przepisy' ],
+			'menu_position' => 2
 		];
 
 		register_post_type( 'recipe-ingredients', $args );
