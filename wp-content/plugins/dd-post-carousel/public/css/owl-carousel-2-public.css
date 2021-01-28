@@ -1,0 +1,19 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+.owl-wrapper {
+    width: 100%;
+}
+.owl-btn-wrapper {
+    margin-top: .75rem;
+    margin-bottom: .75rem;
+}
+.owl-wrapper .no-image{
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+.owl-wrapper .item {
+    max-width: 100%;   
+}
