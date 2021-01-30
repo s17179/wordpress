@@ -31,6 +31,31 @@ jQuery(document).ready(function($) {
         });
     });
 
+    $(document).on('change', '#ingredient-unit recipe-ingredients-ingredients-select select', function(e) {
+        const cup = 250;
+        const ml = 1;
+
+        const ingredientQuantityElements = $('#recipe-ingredients-ingredients-list .ingredient-quantity');
+
+        const unitElements = $(this).val();
+
+
+
+        const defaultQuantityFraction = math.fraction($(this).data('default-quantity'));
+
+
+        const calculatedQuantityFraction = math.fraction(defaultQuantityFraction, cup)
+
+
+        const calculatedQuantityNumber = math.number(calculatedQuantityFraction);
+
+        if (Number.isInteger(calculatedQuantityNumber)) {
+            $(this).text(calculatedQuantityNumber);
+        } else {
+            $(this).text(getTheWholeFromFraction(calculatedQuantityFraction));
+        }
+    });
+
     function getTheWholeFromFraction(fraction) {
         const n = fraction.n;
         const d = fraction.d;

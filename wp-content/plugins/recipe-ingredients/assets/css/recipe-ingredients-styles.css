@@ -40,6 +40,16 @@
     border-radius: 0;
 }
 
+select{
+    outline: none;
+    appearance: unset;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+}
+
 #recipe-ingredients-ingredients-list {
     padding: 0 30px 30px 30px;
 }

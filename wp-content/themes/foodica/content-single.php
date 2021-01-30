@@ -100,8 +100,27 @@ if ( $post_layout == 'column-full' ) {
                                         <label for="check<?= $ingredient->name ?>"><?= $ingredient->name ?></label>
                                     </div>
                                 </td>
-                                <td class="ingredient-quantity" data-default-quantity="<?= $ingredient->quantity ?>"> <?= $ingredient->quantity ?> </td>
-                                <td> <?= $ingredient->unit ?> </td>
+                                <td class="ingredient-quantity" data-default-quantity="<?= $ingredient->quantity ?>" id ="quantity<?= $ingredient->name ?>">
+                                    <?= $ingredient->quantity ?> </td>
+                                <?php
+                                    if($ingredient->unit == "Mililitr"){
+                                ?>
+                                        <td class="ingredient-unit">
+                                            <div" class="recipe-ingredients-ingredients-select">
+                                                <select>
+                                                    <option value="Mililitr">Mililitr</option> 
+                                                    <option value="Szklanka">Szklanka</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                               <?php     }
+                                    else{
+                                    ?>
+
+                                        <td class="ingredient-unit"> <?= $ingredient->unit ?> </td>
+                                <?php    }  ?>
+
+                                
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
