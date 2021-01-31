@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    let riIngredientsCounter = 1;
+    let riIngredientsCounter = $('#ri-ingredients-next-count').text();
 
     $(document).on('click', '#new-recipe-ingredients-button', function (e) {
         e.preventDefault();
@@ -14,24 +14,22 @@ jQuery(document).ready(function($) {
     });
 
     function addNewIngredient() {
-        $('#new-recipe-ingredients-tbody').append(
-            '<tr>\n' +
-            '            <td>\n' +
-            '                <input type="text" name="ri_ingredients['+ riIngredientsCounter +'][name]">\n' +
-            '            </td>\n' +
-            '            <td>\n' +
-            '                <input type="text" value="0" name="ri_ingredients['+ riIngredientsCounter +'][quantity]">\n' +
-            '            </td>\n' +
-            '            <td>\n' +
-            '                <select name="ri_ingredients['+ riIngredientsCounter +'][unit]">\n' +
-            '                    <option>Gramy</option>\n' +
-            '                </select>\n' +
-            '            </td>\n' +
-            '            <td>\n' +
-            '                <button class="button recipe-ingredients-remove">Usuń składnik</button>' +
-            '            </td>\n' +
-            '        </tr>'
-        );
+        const tbody = $('#new-recipe-ingredients-tbody');
+        const tr = tbody.find('tr:first').clone();
+        const lastTr = tbody.find('tr:last');
+
+        tr.find('option').removeAttr('selected');
+        tr.find('input').attr('value', 0);
+
+        tr.append('<td><button class="button recipe-ingredients-remove">Usuń składnik z przepisu</button></td>');
+
+        tr.find('select, input').each(function () {
+            const name = $(this).attr('name');
+            const replacedName = name.replace('[0]', `[${riIngredientsCounter}]`);
+            $(this).attr('name', replacedName);
+        });
+
+        lastTr.after(tr);
 
         riIngredientsCounter++;
     }

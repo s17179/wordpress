@@ -7,6 +7,24 @@ class RecipeIngredientsActivator {
 	public function activate(): void {
 		$this->createDatabaseTableForRecipeIngredientConnections();
 		$this->createDatabaseTableForIngredients();
+		$this->createDatabaseTableForIngredientUnits();
+	}
+
+	private function createDatabaseTableForIngredientUnits(): void {
+		global $wpdb;
+
+		$tableName = $wpdb->prefix . 'ingredients_units';
+		$charsetCollate = $wpdb->get_charset_collate();
+
+		$sql = "
+			CREATE TABLE $tableName (
+			    id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			    name TEXT NOT NULL
+			) $charsetCollate
+		";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
 	}
 
 	private function createDatabaseTableForIngredients(): void {
@@ -36,11 +54,12 @@ class RecipeIngredientsActivator {
 			CREATE TABLE $tableName (
 			    id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			    quantity TEXT NOT NULL,
-			    unit TEXT NOT NULL,
+			    unit_id BIGINT(20) UNSIGNED NOT NULL,
 			    ingredient_id BIGINT(20) UNSIGNED NOT NULL,
 			    post_id BIGINT(20) UNSIGNED NOT NULL,
-			    FOREIGN KEY (post_id) REFERENCES wp_posts(id) ON DELETE CASCADE,
-			    FOREIGN KEY (ingredient_id) REFERENCES wp_ingredients(id) ON DELETE CASCADE
+			    FOREIGN KEY (post_id) REFERENCES wp_posts(id),
+			    FOREIGN KEY (ingredient_id) REFERENCES wp_ingredients(id),
+			    FOREIGN KEY (unit_id) REFERENCES wp_ingredients_units(id)
 			) $charsetCollate
 		";
 

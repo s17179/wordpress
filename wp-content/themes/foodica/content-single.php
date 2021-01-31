@@ -40,11 +40,11 @@ if ( $post_layout == 'column-full' ) {
     <?php
     if (is_user_logged_in()) {
         global $wpdb;
-        $tableName   = $wpdb->prefix . 'favourite_user_recipes';
-        $recipeId = get_the_ID();
+        $recipeIngredientsTableName = $wpdb->prefix . 'favourite_user_recipes';
+        $recipeId                   = get_the_ID();
         $userId = get_current_user_id();
 
-        $favourited = $wpdb->get_results("Select * FROM $tableName WHERE recipes_id = $recipeId AND user_id = $userId");
+        $favourited = $wpdb->get_results("Select * FROM $recipeIngredientsTableName WHERE recipes_id = $recipeId AND user_id = $userId");
     ?>
     <div
             id="favourite_recipes_data"
@@ -66,9 +66,17 @@ if ( $post_layout == 'column-full' ) {
 
     $postId = get_the_ID();
 
-    $tableName = $wpdb->prefix . 'recipe_ingredients_items';
+    $recipeIngredientsTableName = $wpdb->prefix . 'recipe_ingredients_items';
+    $ingredientsTableName = $wpdb->prefix . 'ingredients';
+    $ingredientUnitsTableName = $wpdb->prefix . 'ingredients_units';
 
-    $ingredients = $wpdb->get_results("SELECT name, quantity, unit FROM $tableName WHERE post_id = $postId");
+    $ingredients = $wpdb->get_results("
+        SELECT $recipeIngredientsTableName.quantity, $ingredientsTableName.name, $ingredientUnitsTableName.name AS unit
+        FROM $recipeIngredientsTableName
+        JOIN $ingredientsTableName ON $recipeIngredientsTableName.ingredient_id = $ingredientsTableName.id
+        JOIN $ingredientUnitsTableName ON $recipeIngredientsTableName.unit_id = $ingredientUnitsTableName.id 
+        WHERE post_id = $postId
+    ");
 
     if (!empty($ingredients)) {
     ?>

@@ -84,6 +84,11 @@ class RecipeIngredients {
 			'recipe-ingredients'
 		);
 
+		wp_enqueue_style(
+			'recipe-ingredients-admin-styles',
+			plugins_url( '/assets/css/recipe-ingredients-admin-styles.css', __DIR__ )
+		);
+
 		wp_enqueue_script(
 			'recipe-ingredients-admin-functions',
 			plugins_url( '/assets/js/recipe-ingredients-admin-functions.js', __DIR__ ),
@@ -127,17 +132,17 @@ class RecipeIngredients {
 			);
 
 			foreach ( $ingredients as $ingredient ) {
-				$name     = $ingredient['name'];
 				$quantity = $ingredient['quantity'];
-				$unit     = $ingredient['unit'];
+				$ingredientId = $ingredient['ingredientId'];
+				$unitId = $ingredient['unitId'];
 
 				$wpdb->insert(
 					$tableName,
 					[
-						'name'     => $name,
 						'quantity' => $quantity,
-						'unit'     => $unit,
-						'post_id'  => $postId
+						'post_id'  => $postId,
+						'ingredient_id' => $ingredientId,
+						'unit_id' => $unitId
 					]
 				);
 			}
