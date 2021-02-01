@@ -71,7 +71,7 @@ if ( $post_layout == 'column-full' ) {
     $ingredientUnitsTableName = $wpdb->prefix . 'ingredients_units';
 
     $ingredients = $wpdb->get_results("
-        SELECT $recipeIngredientsTableName.quantity, $ingredientsTableName.name, $ingredientUnitsTableName.name AS unit
+        SELECT $recipeIngredientsTableName.quantity, $ingredientsTableName.name, $ingredientsTableName.id, $ingredientUnitsTableName.name AS unit
         FROM $recipeIngredientsTableName
         JOIN $ingredientsTableName ON $recipeIngredientsTableName.ingredient_id = $ingredientsTableName.id
         JOIN $ingredientUnitsTableName ON $recipeIngredientsTableName.unit_id = $ingredientUnitsTableName.id 
@@ -108,14 +108,14 @@ if ( $post_layout == 'column-full' ) {
                                         <label for="check<?= $ingredient->name ?>"><?= $ingredient->name ?></label>
                                     </div>
                                 </td>
-                                <td class="ingredient-quantity" data-default-quantity="<?= $ingredient->quantity ?>" id ="quantity<?= $ingredient->name ?>">
+                                <td id ="<?= $ingredient->id ?>" class="ingredient-quantity" data-default-quantity="<?= $ingredient->quantity ?>" value = "<?= $ingredient->quantity ?>">
                                     <?= $ingredient->quantity ?> </td>
                                 <?php
                                     if($ingredient->unit == "Mililitr"){
                                 ?>
-                                        <td class="ingredient-unit">
+                                        <td>
                                             <div" class="recipe-ingredients-ingredients-select">
-                                                <select>
+                                                <select id= "select<?= $ingredient->id ?>">
                                                     <option value="Mililitr">Mililitr</option> 
                                                     <option value="Szklanka">Szklanka</option>
                                                 </select>

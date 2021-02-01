@@ -23,37 +23,42 @@ jQuery(document).ready(function($) {
 
             const calculatedQuantityNumber = math.number(calculatedQuantityFraction);
 
+            const selectId =  $(this).attr("id")
+
+            const unitElements = $('.recipe-ingredients-ingredients-select #select' + selectId.toString()).val();
+
             if (Number.isInteger(calculatedQuantityNumber)) {
                 $(this).text(calculatedQuantityNumber);
+                $(this).attr("value", calculatedQuantityNumber);
             } else {
                 $(this).text(getTheWholeFromFraction(calculatedQuantityFraction));
+                $(this).attr("value", calculatedQuantityFraction);
+            }
+
+            if(unitElements == "Szklanka"){
+                calculateCup($(this));
             }
         });
     });
 
-    $(document).on('change', '#ingredient-unit recipe-ingredients-ingredients-select select', function(e) {
-        const cup = 250;
-        const ml = 1;
-
-        const ingredientQuantityElements = $('#recipe-ingredients-ingredients-list .ingredient-quantity');
-
+    $(document).on('change', '.recipe-ingredients-ingredients-select select', function(e) {
         const unitElements = $(this).val();
 
+        const selectId =  $(this).attr("id")
+        const name =  selectId.replace('select', '');
 
+        const ingredientQuantityElements = $('#recipe-ingredients-ingredients-list #' + name.toString());
 
-        const defaultQuantityFraction = math.fraction($(this).data('default-quantity'));
+        const value = ingredientQuantityElements.attr("value");
 
-
-        const calculatedQuantityFraction = math.fraction(defaultQuantityFraction, cup)
-
-
-        const calculatedQuantityNumber = math.number(calculatedQuantityFraction);
-
-        if (Number.isInteger(calculatedQuantityNumber)) {
-            $(this).text(calculatedQuantityNumber);
-        } else {
-            $(this).text(getTheWholeFromFraction(calculatedQuantityFraction));
+        if(unitElements == "Szklanka"){
+            calculateCup(ingredientQuantityElements);
         }
+        else{
+            ingredientQuantityElements.text(value);
+        }
+    
+        
     });
 
     function getTheWholeFromFraction(fraction) {
@@ -73,5 +78,22 @@ jQuery(document).ready(function($) {
         }
 
         return whole.toString() + ' ' + result;
+    }
+
+
+    function calculateCup(ingredientQuantityElements) {
+        const cup = 250;
+
+        const value = ingredientQuantityElements.attr("value");
+
+        const calculatedQuantityFraction =math.fraction(value/cup);
+
+        const calculatedQuantityNumber = math.number(calculatedQuantityFraction);
+
+        if (Number.isInteger(calculatedQuantityNumber)) {
+            ingredientQuantityElements.text(calculatedQuantityNumber);
+        } else {
+            ingredientQuantityElements.text(getTheWholeFromFraction(calculatedQuantityFraction));
+        }
     }
 });
