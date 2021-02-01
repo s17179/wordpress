@@ -11,6 +11,8 @@ class RecipeIngredients {
 
 		add_action( 'add_meta_boxes', [ $this, 'addIngredientsBox' ] );
 
+		add_action( 'add_meta_boxes', [ $this, 'addStepsBox' ] );
+
 		add_action( 'save_post', [ $this, 'saveRecipe' ] );
 
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueueAssets' ] );
@@ -74,6 +76,19 @@ class RecipeIngredients {
 		register_post_type( 'recipe-ingredients', $args );
 
 		flush_rewrite_rules();
+	}
+
+	public function addStepsBox(): void {
+		add_meta_box(
+			'recipe-steps',
+			'Kroki',
+			[ $this, 'includeStepsBoxMetadata' ],
+			'recipe-ingredients'
+		);
+	}
+
+	public function includeStepsBoxMetadata(): void {
+		include RECIPE_INGREDIENTS_BASE_PATH . '/templates/steps-box.php';
 	}
 
 	public function addIngredientsBox(): void {

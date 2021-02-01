@@ -1,5 +1,6 @@
 jQuery(document).ready(function($) {
     let riIngredientsCounter = $('#ri-ingredients-next-count').text();
+    let riStepCounter = 1;
 
     $(document).on('click', '#new-recipe-ingredients-button', function (e) {
         e.preventDefault();
@@ -12,6 +13,38 @@ jQuery(document).ready(function($) {
 
         $(this).parent().parent().remove();
     });
+
+    $(document).on('click', '#new-recipe-step-button', function (e) {
+        e.preventDefault();
+
+        const stepsDiv = $('#recipe-ingredients-steps');
+        const lastStepDiv = stepsDiv.find('div.recipe-ingredients-step-block:first').clone();
+        lastStepDiv.append('<button class="button recipe-ingredients-step-remove">Usuń krok z przepisu</button>');
+
+        const textarea = lastStepDiv.find('textarea');
+        textarea.attr('name', textarea.attr('name').replace('[0]', `[${riStepCounter++}]`));
+
+        stepsDiv.append(lastStepDiv);
+
+        reindexStepNumbers();
+    });
+
+    $(document).on('click', '.recipe-ingredients-step-remove', function (e) {
+        e.preventDefault();
+
+        $(this).parent().remove();
+
+        reindexStepNumbers();
+    });
+
+    function reindexStepNumbers() {
+        let numberCounter = 1;
+
+        $('#recipe-ingredients-steps').find('span.recipe-ingredients-step-number').each(function () {
+            $(this).text(numberCounter);
+            numberCounter++;
+        });
+    }
 
     function addNewIngredient() {
         const tbody = $('#new-recipe-ingredients-tbody');
