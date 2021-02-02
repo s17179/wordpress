@@ -162,5 +162,28 @@ class RecipeIngredients {
 				);
 			}
 		}
+
+		if ( ! empty( $_POST['ri_steps'] ) ) {
+			global $wpdb;
+			$tableName = $wpdb->prefix . 'recipe_steps';
+			$steps = $_POST['ri_steps'];
+
+			$wpdb->delete(
+				$tableName,
+				[
+					'post_id' => $postId
+				]
+			);
+
+			foreach ( $steps as $step ) {
+				$wpdb->insert(
+					$tableName,
+					[
+						'step' => $step,
+						'post_id' => $postId
+					]
+				);
+			}
+		}
 	}
 }

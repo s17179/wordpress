@@ -8,6 +8,26 @@ class RecipeIngredientsActivator {
 		$this->createDatabaseTableForRecipeIngredientConnections();
 		$this->createDatabaseTableForIngredients();
 		$this->createDatabaseTableForIngredientUnits();
+		$this->createDatabaseTableForRecipeSteps();
+	}
+
+	private function createDatabaseTableForRecipeSteps(): void {
+		global $wpdb;
+
+		$tableName = $wpdb->prefix . 'recipe_steps';
+		$charsetCollate = $wpdb->get_charset_collate();
+
+		$sql = "
+			CREATE TABLE $tableName (
+			    id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			    step TEXT NOT NULL,
+			    post_id BIGINT(20) UNSIGNED NOT NULL,
+			    FOREIGN KEY (post_id) REFERENCES wp_posts(id)
+			) $charsetCollate
+		";
+
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
 	}
 
 	private function createDatabaseTableForIngredientUnits(): void {
@@ -53,7 +73,7 @@ class RecipeIngredientsActivator {
 		$sql = "
 			CREATE TABLE $tableName (
 			    id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			    quantity TEXT NOT NULL,
+			    quantity BIGINT(20) UNSIGNED NOT NULL,
 			    unit_id BIGINT(20) UNSIGNED NOT NULL,
 			    ingredient_id BIGINT(20) UNSIGNED NOT NULL,
 			    post_id BIGINT(20) UNSIGNED NOT NULL,

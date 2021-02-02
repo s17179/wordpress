@@ -137,6 +137,27 @@ if ( $post_layout == 'column-full' ) {
         </div>
     <?php } ?>
 
+    <?php
+    $tableName = $wpdb->prefix . 'recipe_steps';
+    $steps = $wpdb->get_results("SELECT step FROM $tableName WHERE post_id = $postId");
+
+    if (!empty($steps)) {
+        $stepNumber = 1;
+    ?>
+        <div id="recipe-steps">
+            <div class="recipe-steps-header">
+                <h4>Instrukcja wykonania</h4>
+            </div>
+            <div class="recipe-steps-content">
+	            <?php foreach ($steps as $step) { ?>
+                    <div class="recipe-steps-step">
+                        <h5>Krok <?= $stepNumber ?></h5>
+			            <?= $step->step ?>
+                    </div>
+                <?php $stepNumber++; } ?>
+            </div>
+        </div>
+    <?php } ?>
 
     <?php if(!get_the_ID()) {
 	    echo '';

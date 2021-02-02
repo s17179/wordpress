@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     let riIngredientsCounter = $('#ri-ingredients-next-count').text();
-    let riStepCounter = 1;
+    let riStepCounter = $('#ri-recipe-steps-next-count').text();
 
     $(document).on('click', '#new-recipe-ingredients-button', function (e) {
         e.preventDefault();
@@ -23,6 +23,7 @@ jQuery(document).ready(function($) {
 
         const textarea = lastStepDiv.find('textarea');
         textarea.attr('name', textarea.attr('name').replace('[0]', `[${riStepCounter++}]`));
+        textarea.val('');
 
         stepsDiv.append(lastStepDiv);
 
