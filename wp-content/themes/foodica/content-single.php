@@ -115,7 +115,7 @@ if ( $post_layout == 'column-full' ) {
                                 ?>
                                         <td>
                                             <div" class="recipe-ingredients-ingredients-select">
-                                                <select id= "select<?= $ingredient->id ?>">
+                                                <select class="select" id= "select<?= $ingredient->id ?>">
                                                     <option value="Mililitr">Mililitr</option> 
                                                     <option value="Szklanka">Szklanka</option>
                                                 </select>
