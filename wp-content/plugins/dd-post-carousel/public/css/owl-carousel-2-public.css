@@ -8,6 +8,7 @@
 .owl-btn-wrapper {
     margin-top: .75rem;
     margin-bottom: .75rem;
+    display: none;
 }
 .owl-wrapper .no-image{
     background-size: cover !important;
