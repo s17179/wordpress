@@ -1,13 +1,13 @@
 jQuery(document).ready(function($) {
-    $(document).on('click', '#recipe-ingredients-ingredients-list li', function (e) {
+    $(document).on('click', '#recipe-ingredients-ingredients-list .recipe-table td div', function (e) {
         const checked = $(this).children('input').is(':checked');
 
         if (!checked) {
             $(this).children('input').prop('checked', true);
-            $(this).children('label').css('text-decoration', 'line-through');
+            $(this).parent().parent().css('color', 'rgba(0, 0, 0, 0.5)');
         } else {
             $(this).children('input').prop('checked', false);
-            $(this).children('label').css('text-decoration', 'none');
+            $(this).parent().parent().css('color', '#000');
         }
     });
 
