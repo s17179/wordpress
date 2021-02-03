@@ -150,3 +150,17 @@ select{
     background-size: 12px;
     border-color: #1A84EE;
 }
+
+button.owl-next, button.owl-prev {
+    font-size: 30px !important;
+}
+
+.owl-wrapper .item .item-inner h4 {
+    margin-top: 20px;
+    font-size: 26px !important;
+    text-align: center;
+}
+
+.owl-wrapper .item .item-inner img {
+    border-radius: 4px;
+}
