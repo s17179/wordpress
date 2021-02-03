@@ -104,11 +104,15 @@ if ( ! class_exists( 'SimpleSocialButtonsPR_Admin' ) ) :
 
 			$currentSsbHide = get_post_custom_values( $this->hideCustomMetaKey, $postId );
 
-			if ( $currentSsbHide[0] == 'true' ) {
-				$checked = true;
-			} else {
-				$checked = false;
-			}
+			if ($currentSsbHide === null) {
+			    $checked = false;
+            } else {
+				if ( $currentSsbHide[0] == 'true' ) {
+					$checked = true;
+				} else {
+					$checked = false;
+				}
+            }
 
 			// Rendering meta box.
 			if ( ! function_exists( 'add_meta_box' ) ) {
