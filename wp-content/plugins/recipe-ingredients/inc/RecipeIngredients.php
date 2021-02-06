@@ -27,26 +27,26 @@ class RecipeIngredients {
 		add_filter( 'posts_clauses', [$this, 'filterByRecipeIngredients' ], 10, 2 );
 	}
 
-	function filterByRecipeIngredients( $clauses, $query_object ){
+	public function filterByRecipeIngredients( $clauses, $query_object ){
 		global $wpdb;
 
 		if ( $query_object->is_search() ){
 			$join = &$clauses['join'];
 			if (! empty( $join ) ) $join .= ' ';
-			$join .= "LEFT JOIN {$wpdb->prefix}recipe_ingredients_items RI ON RI.post_id = {$wpdb->posts}.id ";
-			$join .= "LEFT JOIN {$wpdb->prefix}ingredients I ON I.id = RI.ingredient_id";
+			$join .= "LEFT JOIN post_ingredients i ON i.id = {$wpdb->posts}.id";
 
 			$where = &$clauses['where'];
 			$where .= " OR (";
 
 			$phrases = explode(',', $query_object->query['s']);
+
 			$counter = 0;
 			foreach ( $phrases as $phrase ) {
 				$phrase = trim( $phrase );
 				if ($counter === 0) {
-					$where .= "I.name LIKE '%$phrase%'";
+					$where .= "i.ingredients LIKE '%$phrase%'";
 				} else {
-					$where .= " OR I.name LIKE '%$phrase%'";
+					$where .= " AND i.ingredients LIKE '%$phrase%'";
 				}
 				$counter++;
 			}
