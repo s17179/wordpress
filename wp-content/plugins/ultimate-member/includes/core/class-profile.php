@@ -136,20 +136,38 @@ if ( ! class_exists( 'um\core\Profile' ) ) {
 			 * }
 			 * ?>
 			 */
-			$tabs = apply_filters( 'um_profile_tabs', array(
-				'main' => array(
-					'name' => __( 'About', 'ultimate-member' ),
-					'icon' => 'um-faicon-user'
-				),
-				'posts' => array(
-					'name' => __( 'Ulubione posty', 'ultimate-member' ),
-					'icon' => 'um-icon-heart'
-				),
-				'comments' => array(
-					'name' => __( 'Comments', 'ultimate-member' ),
-					'icon' => 'um-faicon-comment'
-				)
-			) );
+			$allowedRoles = array('administrator');
+            $currentUserRoles = (array) wp_get_current_user()->roles;
+
+			if(um_is_myprofile() || $currentUserRoles == $allowedRoles) {
+
+				$tabs = apply_filters( 'um_profile_tabs', array(
+					'main'     => array(
+						'name' => __( 'About', 'ultimate-member' ),
+						'icon' => 'um-faicon-user'
+					),
+					'posts'    => array(
+						'name' => __( 'Ulubione posty', 'ultimate-member' ),
+						'icon' => 'um-icon-heart'
+					),
+					'comments' => array(
+						'name' => __( 'Comments', 'ultimate-member' ),
+						'icon' => 'um-faicon-comment'
+					)
+				) );
+			}
+			else{
+				$tabs = apply_filters( 'um_profile_tabs', array(
+					'main'     => array(
+						'name' => __( 'About', 'ultimate-member' ),
+						'icon' => 'um-faicon-user'
+					),
+					'comments' => array(
+						'name' => __( 'Comments', 'ultimate-member' ),
+						'icon' => 'um-faicon-comment'
+					)
+				) );
+            }
 
 			// disable private tabs
 			if ( ! is_admin() ) {
