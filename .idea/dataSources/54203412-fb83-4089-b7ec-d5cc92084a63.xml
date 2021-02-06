@@ -1693,7 +1693,7 @@ ID</ColNames>
       <DataType>bigint(20) unsigned|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="461" parent="337" name="post_id">
+    <index id="461" parent="337" name="wp_recipe_steps_ibfk_1">
       <ColNames>post_id</ColNames>
       <Type>btree</Type>
     </index>
@@ -1706,6 +1706,7 @@ ID</ColNames>
       <ColNames>post_id</ColNames>
       <RefTableName>wp_posts</RefTableName>
       <RefColNames>ID</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="464" parent="338" name="object_id">
       <Position>1</Position>

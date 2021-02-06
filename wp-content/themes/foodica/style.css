@@ -977,6 +977,7 @@ a:hover, a:focus {
 
 .sb-search input[type="search"].sb-search-input {
     -webkit-appearance: none;
+    width: 250px !important;
 }
 
 .sb-search .sb-search-input::-webkit-input-placeholder {
